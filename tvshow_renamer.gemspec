@@ -1,9 +1,9 @@
 # encoding: utf-8
-$:.unshift File.expand_path('../lib', __FILE__)
+require File.expand_path('../lib/tvshow_renamer/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name              = "tvshow_renamer"
-  s.version           = '0.1'
+  s.version           = TVShowRenamer::VERSION
   s.license           = 'MIT'
   s.author            = "François Klingler"
   s.email             = "francois@fklingler.com"
@@ -11,6 +11,9 @@ Gem::Specification.new do |s|
   s.summary           = "TV Show files renamer"
   s.description       = "Utility to rename TV Show files to a correct format"
 
-  s.files             = Dir.glob("lib/**/*")
+  s.files             = %w( LICENSE README.md Rakefile )
+  s.files            += Dir.glob("lib/**/*")
+  s.files            += Dir.glob("test/**/*")
+
   s.executables       = %w( tvshow_renamer )
 end

@@ -21,8 +21,8 @@ module TVShowRenamer
       if ARGV.length <= 1
         puts opts
       else
-        options[:tvshow_name] = ARGV.shift
-        Renamer.new(options).rename(ARGV)
+        tvshow_name = ARGV.shift
+        Renamer.new(tvshow_name, options).rename(ARGV)
       end
     end
   end
