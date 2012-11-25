@@ -12,6 +12,6 @@ Installation
 Usage
 -----
 
-`tvshow_renamer [options] file ...`
+`tvshow_renamer [options] <tvshow_name> file|directory ...`
 
 You can specify many files to rename.
