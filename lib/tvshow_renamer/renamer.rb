@@ -38,6 +38,7 @@ module TVShowRenamer
       extension = File.extname(filename)
 
       if EXTENSIONS.include?(extension.downcase)
+        dirname = File.dirname(filename)
         basename = File.basename(filename)
         detected_season, detected_episode = get_season_and_episode(basename)
 
@@ -52,7 +53,7 @@ module TVShowRenamer
           rename_value = $stdin.gets.chomp.strip
           case rename_value.downcase
           when 'y'
-            new_filename = File.join(File.dirname(filename), new_basename)
+            new_filename = File.join(dirname, new_basename)
             if File.exists?(new_filename)
               override_ok = false
               until override_ok
@@ -62,6 +63,7 @@ module TVShowRenamer
                 case override_value
                 when 'y'
                   FileUtils.mv filename, new_filename
+                  log_rename dirname, basename, new_basename
                   override_ok = true
                   rename_ok = true
                 when 'n'
@@ -70,6 +72,7 @@ module TVShowRenamer
               end
             else
               FileUtils.mv filename, new_filename
+              log_rename dirname, basename, new_basename
               rename_ok = true
             end
           when 'n'
@@ -80,6 +83,14 @@ module TVShowRenamer
           when '?', 'h'
             puts "y: Yes, n: No, e: Edit"
           end
+        end
+      end
+    end
+
+    def log_rename(dirname, basename, new_basename)
+      if @options[:log_file]
+        File.open(File.join(dirname, @options[:log_file]), 'a') do |file|
+          file.puts "\"#{basename}\" => \"#{new_basename}\"\n"
         end
       end
     end
