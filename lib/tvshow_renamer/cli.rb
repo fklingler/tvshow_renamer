@@ -7,9 +7,9 @@ module TVShowRenamer
       opts = OptionParser.new do |opts|
         opts.banner = "Usage: tvshow_renamer [options] <tvshow_name> file|directory ..."
 
-        opts.on("-v", "--verbose", "Run verbosely") do |v|
-          options[:verbose] = v
-        end
+        # opts.on("-v", "--verbose", "Run verbosely") do |v|
+        #   options[:verbose] = v
+        # end
 
         opts.on_tail("-h", "--help", "Show this message") do
           puts opts
