@@ -15,6 +15,10 @@ module TVShowRenamer
           options[:log_file] = log_file
         end
 
+        opts.on("-r", "--recursive", "If passed a directory, look recursively inside it for files to rename") do |recursive|
+          options[:recursive] = recursive
+        end
+
         opts.on_tail("-h", "--help", "Show this message") do
           puts opts
           exit

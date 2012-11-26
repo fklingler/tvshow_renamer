@@ -29,7 +29,7 @@ module TVShowRenamer
 
     def rename_dir(dirname)
       puts "Renaming files in directory \"#{dirname}\""
-      Dir.glob(dirname + '/**').each do |filename|
+      Dir.glob(dirname + (@options[:recursive] ? '/**/*' : '/**')).each do |filename|
         rename_file(filename)
       end
     end
