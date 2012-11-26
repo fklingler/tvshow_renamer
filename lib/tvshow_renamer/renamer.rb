@@ -119,7 +119,11 @@ module TVShowRenamer
       until quit
         case CLI.prompt("Choice : ")
         when '1'
-          @tvfile.tvshow_name = CLI.prompt_edit_value("TV Show Name", @tvfile.tvshow_name)
+          new_tvshow_name = CLI.prompt_edit_value("TV Show Name", @tvfile.tvshow_name)
+          if new_tvshow_name != @tvshow_name
+            @tvshow_name = @tvfile.tvshow_name = new_tvshow_name
+            puts "TV Show Name is now #{@tvshow_name}."
+          end
         when '2'
           puts "You cannot change the format yet, sorry."
         when 'q'
