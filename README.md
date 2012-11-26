@@ -26,8 +26,20 @@ Installation
 Usage
 -----
 
-`tvshow_renamer [options] <tvshow_name> file|directory ...`
+`tvshow_renamer [options] file|directory ...`
 
 You can specify many files to rename.
 
-The option `-l FILENAME` ou `--log FILENAME` will make the utility create a file inside the same directory as the renamed files containing the old and new names of the files. It can be useful to keep the episode or version names.
+
+### Options
+* `-n TVSHOW_NAME` or `--name TVSHOW_NAME`  
+  This option define the TV show name used to rename the files. If the option is not present, the name will be asked first.
+
+* `-l FILENAME` or `--log FILENAME`  
+  This option make the utility create a file inside the same directory as the renamed files containing the old and new names of the files. It can be useful to keep the episode or version names.
+
+
+Todo
+----
+
+* Add possibility to customize the renaming format.

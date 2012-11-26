@@ -1,11 +1,6 @@
 module TVShowRenamer
   class TVShowFile
-    attr_reader :tvshow_name
-    attr_reader :filename
-    attr_accessor :season
-    attr_accessor :episode
-    attr_reader :detected_season
-    attr_reader :detected_episode
+    attr_reader :tvshow_name, :filename, :season, :episode, :detected_season, :detected_episode
 
     def initialize(tvshow_name, filename)
       @tvshow_name = tvshow_name
@@ -13,6 +8,11 @@ module TVShowRenamer
     end
 
     # Custom setters
+
+    def tvshow_name=(tvshow_name)
+      @tvshow_name = tvshow_name
+      @new_basename = @new_filename = nil
+    end
 
     def season=(season)
       @season = season
