@@ -2,4 +2,4 @@
 require 'rubygems'
 require 'tvshow_renamer'
 
-TVShowRenamer::CLI.start
+TVShowRenamer::Runner.start
