@@ -33,13 +33,15 @@ You can specify many files to rename.
 
 ### Options
 * `-n TVSHOW_NAME` or `--name TVSHOW_NAME`  
-  This option define the TV show name used to rename the files. If the option is not present, the name will be asked first.
+  This option defines the TV show name used to rename the files. If the option is not present, the name will be asked first.
+
+* `-f FORMAT` or `--format FORMAT`  
+  This option defines the format for the new filenames.  
+  `$n` will be substitued by the TV show name, `$s` by the season number, `$e` by the episode number.  
+  The default format is : `$n - $sx$e`.
 
 * `-l FILENAME` or `--log FILENAME`  
-  This option make the utility create a file inside the same directory as the renamed files containing the old and new names of the files. It can be useful to keep the episode or version names.
+  This option makes the utility create a file inside the same directory as the renamed files containing the old and new names of the files. It can be useful to keep the episode or version names.
 
-
-Todo
-----
-
-* Add possibility to customize the renaming format.
+* `-r` or `--recursive`
+  If any directory is passed as parameter, this option makes the utility look recursively inside directories for files to rename.

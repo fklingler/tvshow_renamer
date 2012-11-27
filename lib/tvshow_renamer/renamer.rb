@@ -109,7 +109,7 @@ module TVShowRenamer
       puts "Menu"
       puts "----"
       puts "1. Change TV Show name"
-      puts "2. Change format (not yet available)"
+      puts "2. Change format"
       puts "q. Quit menu"
       puts "----"
       quit = false
@@ -123,7 +123,12 @@ module TVShowRenamer
             puts "TV Show Name is now #{new_tvshow_name}."
           end
         when '2'
-          puts "You cannot change the format yet, sorry."
+          new_format = CLI.prompt_edit_value("Format - $n : TV show name, $s : Season, $e : Episode", @options[:format])
+          if new_format != @options[:format]
+            @options[:format] = new_format
+            @tvfile.options_modified
+            puts "Format is now #{new_format}."
+          end
         when 'q'
           quit = true
         end

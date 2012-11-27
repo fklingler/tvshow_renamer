@@ -35,7 +35,10 @@ module TVShowRenamer
 
     def new_basename
       unless @new_basename
-        @new_basename = "#{@options[:tvshow_name]} - %02ix%02i#{extname}" % [@season, @episode]
+        @new_basename = @options[:format].gsub('$n', @options[:tvshow_name])
+                                         .gsub('$s', '%02i' % @season)
+                                         .gsub('$e', '%02i' % @episode)
+                                         .concat(extname)
         @new_filename = nil
       end
       @new_basename
