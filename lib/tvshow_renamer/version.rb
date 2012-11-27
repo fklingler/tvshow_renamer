@@ -1,3 +1,3 @@
 module TVShowRenamer
-  Version = VERSION = '0.4.1'
+  Version = VERSION = '0.5'
 end
