@@ -34,12 +34,8 @@ module TVShowRenamer
       if ARGV.empty?
         puts opts
       else
-        tvshow_name = if options[:tvshow_name]
-          options.delete(:tvshow_name)
-        else
-          CLI.prompt 'Please enter the name of the TV Show for these files : '
-        end
-        Renamer.new(tvshow_name, options).rename(ARGV)
+        options[:tvshow_name] ||= CLI.prompt 'Please enter the name of the TV Show for these files : '
+        Renamer.new(options).rename(ARGV)
       end
     end
   end

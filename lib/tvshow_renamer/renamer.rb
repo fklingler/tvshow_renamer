@@ -3,13 +3,10 @@ require 'fileutils'
 
 module TVShowRenamer
   class Renamer
-    attr_accessor :tvshow_name
-
     EXTENSIONS = %w( .mkv .avi .mp4 .srt )
     NUMBER_REGEX = /\A\d+\z/
 
-    def initialize(tvshow_name, options = {})
-      @tvshow_name = tvshow_name
+    def initialize(options = {})
       @options = options
     end
 
@@ -36,7 +33,7 @@ module TVShowRenamer
 
     def rename_file(filename)
       renamed = false
-      @tvfile = TVShowFile.new @tvshow_name, File.expand_path(filename)
+      @tvfile = TVShowFile.new @options, File.expand_path(filename)
 
       if EXTENSIONS.include?(@tvfile.extname.downcase)
         @tvfile.detect_season_and_episode
@@ -119,10 +116,11 @@ module TVShowRenamer
       until quit
         case CLI.prompt("Choice : ")
         when '1'
-          new_tvshow_name = CLI.prompt_edit_value("TV Show Name", @tvfile.tvshow_name)
-          if new_tvshow_name != @tvshow_name
-            @tvshow_name = @tvfile.tvshow_name = new_tvshow_name
-            puts "TV Show Name is now #{@tvshow_name}."
+          new_tvshow_name = CLI.prompt_edit_value("TV Show Name", @options[:tvshow_name])
+          if new_tvshow_name != @options[:tvshow_name]
+            @options[:tvshow_name] = new_tvshow_name
+            @tvfile.options_modified
+            puts "TV Show Name is now #{new_tvshow_name}."
           end
         when '2'
           puts "You cannot change the format yet, sorry."

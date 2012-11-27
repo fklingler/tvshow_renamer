@@ -2,7 +2,9 @@ require 'test/unit'
 require 'tvshow_renamer'
 
 class TVShowRenamerTest < Test::Unit::TestCase
-  TVSHOW_NAME = 'Famous Show'
+  def setup
+    @options = {:tvshow_name => 'Famous Show'}
+  end
 
   def test_detect_season_and_episode
     {
@@ -13,7 +15,7 @@ class TVShowRenamerTest < Test::Unit::TestCase
       'Famous.Show.03.04.avi'                  => [3, 4],
       'Famous-Show.04x00.srt'                  => [4, 0],
     }.each do |k,v|
-      tvfile = TVShowRenamer::TVShowFile.new(TVSHOW_NAME, k)
+      tvfile = TVShowRenamer::TVShowFile.new(@options, k)
       tvfile.detect_season_and_episode
       
       assert_equal v, [tvfile.season, tvfile.episode]
@@ -21,7 +23,7 @@ class TVShowRenamerTest < Test::Unit::TestCase
   end
 
   def test_new_basename
-    tvfile = TVShowRenamer::TVShowFile.new(TVSHOW_NAME, 'test.mkv')
+    tvfile = TVShowRenamer::TVShowFile.new(@options, 'test.mkv')
     tvfile.season = 1
 
     tvfile.episode = 2

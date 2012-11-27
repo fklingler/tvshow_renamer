@@ -1,18 +1,13 @@
 module TVShowRenamer
   class TVShowFile
-    attr_reader :tvshow_name, :filename, :season, :episode, :detected_season, :detected_episode
+    attr_reader :filename, :season, :episode, :detected_season, :detected_episode
 
-    def initialize(tvshow_name, filename)
-      @tvshow_name = tvshow_name
+    def initialize(options = {}, filename = nil)
+      @options = options
       @filename = filename
     end
 
     # Custom setters
-
-    def tvshow_name=(tvshow_name)
-      @tvshow_name = tvshow_name
-      @new_basename = @new_filename = nil
-    end
 
     def season=(season)
       @season = season
@@ -40,7 +35,7 @@ module TVShowRenamer
 
     def new_basename
       unless @new_basename
-        @new_basename = "#{@tvshow_name} - %02ix%02i#{extname}" % [@season, @episode]
+        @new_basename = "#{@options[:tvshow_name]} - %02ix%02i#{extname}" % [@season, @episode]
         @new_filename = nil
       end
       @new_basename
@@ -51,6 +46,10 @@ module TVShowRenamer
     end
 
     # Active methods
+
+    def options_modified
+      @new_basename = @new_filename = nil
+    end
 
     def detect_season_and_episode
       regex = /(?<season>\d{1,2})(e|x|\.)?(?<episode>\d{2,})/i
