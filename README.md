@@ -43,5 +43,5 @@ You can specify many files to rename.
 * `-l FILENAME` or `--log FILENAME`  
   This option makes the utility create a file inside the same directory as the renamed files containing the old and new names of the files. It can be useful to keep the episode or version names.
 
-* `-r` or `--recursive`
+* `-r` or `--recursive`  
   If any directory is passed as parameter, this option makes the utility look recursively inside directories for files to rename.
