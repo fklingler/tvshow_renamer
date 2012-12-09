@@ -2,6 +2,8 @@ tvshow_renamer is a simple command line utility to rename automagically the tv s
 
 Thanks to [skamlet](https://github.com/skamlet) for his work on [tv-show-renamer](https://github.com/skamlet/tv-show-renamer), the java utility upon which I have based my work.
 
+Feel free to contribute!
+
 
 Example
 -------
